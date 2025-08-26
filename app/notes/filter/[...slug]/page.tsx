@@ -1,6 +1,6 @@
-import { getNotes } from "@/lib/api/notes";
-import type { NotesResponse } from "@/types/note";
-import NotesClient from "@/components/Notes/Notes.client";
+import { getNotes } from "../../../../lib/api/notes";
+import type { NotesResponse } from "../../../../types/note";
+import NotesClient from "../../../../components/Notes/Notes.client";
 
 interface NotesPageProps {
   params: Promise<{ slug?: string[] }>;

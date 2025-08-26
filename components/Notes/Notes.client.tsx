@@ -3,16 +3,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useDebounce } from "@uidotdev/usehooks";
-import { getNotes } from "@/lib/api/notes";
-import type { NotesResponse } from "@/types/note";
+import { getNotes } from "../../lib/api/notes";
+import type { NotesResponse } from "../../types/note";
 
-import NoteList from "@/components/NoteList/NoteList";
-import Loader from "@/components/Loader/Loader";
-import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
-import Pagination from "@/components/Pagination/Pagination";
-import SearchBox from "@/components/SearchBox/SearchBox";
-import NoteForm from "@/components/NoteForm/NoteForm";
-import Modal from "@/components/Modal/Modal";
+import NoteList from "../NoteList/NoteList";
+import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Pagination from "../Pagination/Pagination";
+import SearchBox from "../SearchBox/SearchBox";
+import NoteForm from "../NoteForm/NoteForm";
+import Modal from "../Modal/Modal";
 
 import css from "./Notes.client.module.css";
 
