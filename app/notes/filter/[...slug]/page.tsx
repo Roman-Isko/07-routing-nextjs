@@ -3,16 +3,16 @@ import type { NotesResponse } from "@/types/note";
 import NotesClient from "@/components/Notes/Notes.client";
 
 interface NotesPageProps {
-  params: { slug?: string[] };
-  searchParams: { page?: string; q?: string };
+  params: Promise<{ slug?: string[] }>;
+  searchParams: Promise<{ page?: string; q?: string }>;
 }
 
 export default async function NotesPage({
   params,
   searchParams,
 }: NotesPageProps) {
-  const slug = params.slug;
-  const resolvedSearchParams = searchParams;
+  const { slug } = await params;
+  const resolvedSearchParams = await searchParams;
 
   const tagParam = slug?.[0] || "All";
   const tag = tagParam === "All" ? undefined : tagParam;

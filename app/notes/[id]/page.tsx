@@ -1,9 +1,10 @@
 import NoteDetailsWrapper from "./NoteDetailsWrapper";
 
 interface NotePageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function NotePage({ params }: NotePageProps) {
-  return <NoteDetailsWrapper noteId={params.id} />;
+export default async function NotePage({ params }: NotePageProps) {
+  const { id } = await params; // чекаємо на Promise
+  return <NoteDetailsWrapper noteId={id} />;
 }
