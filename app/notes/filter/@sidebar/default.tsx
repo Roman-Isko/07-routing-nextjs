@@ -1,4 +1,5 @@
-export default function DefaultSidebar() {
-  // Можна нічого не рендерити, або показати skeleton
-  return null;
+import SidebarNotes from "@/components/SidebarNotes/SidebarNotes";
+
+export default function SidebarDefault() {
+  return <SidebarNotes />;
 }

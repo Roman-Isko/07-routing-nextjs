@@ -1,9 +1,8 @@
-// app/not-found.tsx
 import css from "./not-found.module.css";
 
-export default function NotFound() {
+export default function NotFoundPage() {
   return (
-    <div className={css.container}>
+    <div>
       <h1 className={css.title}>404 - Page not found</h1>
       <p className={css.description}>
         Sorry, the page you are looking for does not exist.

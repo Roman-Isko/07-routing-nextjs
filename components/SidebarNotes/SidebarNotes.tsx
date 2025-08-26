@@ -1,17 +1,22 @@
+import Link from "next/link";
 import css from "./SidebarNotes.module.css";
 
-export default function SidebarNotes() {
-  // Тут можна підставити теги або короткі нотатки
-  const tags = ["All", "Work", "Personal", "Urgent"];
+const tags = ["All", "Todo", "Work", "Personal", "Meeting", "Shopping"];
 
+export default function SidebarNotes() {
   return (
-    <aside className={css.sidebar}>
-      <h3>Теги нотаток</h3>
-      <ul>
-        {tags.map((tag) => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
-    </aside>
+    <ul className={css.menuList}>
+      {tags.map((tag) => (
+        <li key={tag} className={css.menuItem}>
+          <Link
+            href={`/notes/filter/${tag}`}
+            className={css.menuLink}
+            scroll={false}
+          >
+            {tag}
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }

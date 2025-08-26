@@ -1,15 +1,11 @@
 import "./globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
-import TanStackProvider from "../components/TanStackProvider/TanStackProvider";
+import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
+export const metadata = {
   title: "NoteHub",
-  description: "Note taking application",
+  description: "Notes app with Next.js routing",
 };
 
 export default function RootLayout({
@@ -19,10 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <TanStackProvider>
           <Header />
-          {children}
+          <main>{children}</main>
           <Footer />
         </TanStackProvider>
         <div id="modal-root" />
