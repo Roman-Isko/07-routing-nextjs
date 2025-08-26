@@ -1,5 +1,9 @@
 import NoteDetailsWrapper from "./NoteDetailsWrapper";
 
-export default function NotePage({ params }: { params: { id: string } }) {
+interface NotePageProps {
+  params: { id: string };
+}
+
+export default function NotePage({ params }: NotePageProps) {
   return <NoteDetailsWrapper noteId={params.id} />;
 }
