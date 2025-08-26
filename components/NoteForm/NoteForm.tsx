@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 import { createNote } from "../../lib/api/notes";
 import { NewNote } from "../../types/note";
-import ErrorMessage from "../ErrorMessage/ErrorMessage"; // ✅ використовуємо компонент
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import css from "./NoteForm.module.css";
 
 const tags = ["Todo", "Work", "Personal", "Meeting", "Shopping"] as const;
@@ -60,7 +60,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
             Title
             <Field name="title" className={css.input} />
             {errors.title && touched.title && (
-              <ErrorMessage message={errors.title} /> // ✅
+              <ErrorMessage message={errors.title} />
             )}
           </label>
 
@@ -68,7 +68,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
             Content
             <Field name="content" as="textarea" className={css.textarea} />
             {errors.content && touched.content && (
-              <ErrorMessage message={errors.content} /> // ✅
+              <ErrorMessage message={errors.content} />
             )}
           </label>
 
@@ -81,9 +81,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
                 </option>
               ))}
             </Field>
-            {errors.tag && touched.tag && (
-              <ErrorMessage message={errors.tag} /> // ✅
-            )}
+            {errors.tag && touched.tag && <ErrorMessage message={errors.tag} />}
           </label>
 
           <div className={css.actions}>

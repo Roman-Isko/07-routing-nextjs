@@ -16,7 +16,7 @@ export default function NoteDetailsWrapper({
 
   const handleClose = () => {
     setIsOpen(false);
-    router.push("/notes/filter/All");
+    router.push("/notes");
   };
 
   if (!isOpen) return null;

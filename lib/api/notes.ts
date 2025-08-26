@@ -1,5 +1,5 @@
 import { api } from "./axios";
-import type { Note, NewNote, NotesResponse } from "@/types/note";
+import type { Note, NewNote, NotesResponse } from "../../types/note";
 
 export async function getNotes(params: {
   page: number;
