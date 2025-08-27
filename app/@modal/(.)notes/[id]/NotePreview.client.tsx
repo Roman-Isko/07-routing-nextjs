@@ -1,38 +1,40 @@
 "use client";
 
-import { useEffect } from "react";
-import { createPortal } from "react-dom";
-import css from "./Modal.module.css";
+import { useQuery } from "@tanstack/react-query";
+import { getNoteById } from "../../../../lib/api";
+import { useRouter } from "next/navigation";
 
-export default function Modal({
-  onClose,
-  children,
-}: {
-  onClose: () => void;
-  children: React.ReactNode;
-}) {
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [onClose]);
+type Props = { id: string };
 
-  return createPortal(
-    <div className={css.backdrop} onClick={onClose}>
-      <div className={css.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={css.close} onClick={onClose} aria-label="Close">
-          ×
+export default function NotePreview({ id }: Props) {
+  const router = useRouter();
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["note", id],
+    queryFn: () => getNoteById(id),
+  });
+
+  if (isLoading) return <div>Loading note...</div>;
+  if (isError || !data) return <div>Failed to load note</div>;
+
+  return (
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-black/50"
+      onClick={() => router.back()}
+    >
+      <div
+        className="bg-white p-4 rounded shadow max-w-lg w-full"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 className="text-xl font-bold mb-2">{data.title}</h2>
+        <p>{data.content}</p>
+        <button
+          className="mt-4 px-3 py-1 border rounded"
+          onClick={() => router.back()}
+        >
+          Close
         </button>
-        {children}
       </div>
-    </div>,
-    document.body,
+    </div>
   );
 }
