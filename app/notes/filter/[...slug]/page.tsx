@@ -1,4 +1,4 @@
-import { getNotes } from "../../../../lib/api/notes";
+import { getNotes } from "../../../../lib/api";
 import type { NotesResponse } from "../../../../types/note";
 import NotesClient from "../../../../components/Notes/Notes.client";
 

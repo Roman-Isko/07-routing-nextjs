@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import NoteDetails from "./NoteDetails";
+import NoteDetails from "./NoteDetails.client";
 
 interface NoteDetailsWrapperProps {
   noteId: string;

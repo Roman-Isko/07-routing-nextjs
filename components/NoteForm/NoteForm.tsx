@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-import { createNote } from "../../lib/api/notes";
+import { createNote } from "../../lib/api";
 import { NewNote } from "../../types/note";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import css from "./NoteForm.module.css";
