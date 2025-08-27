@@ -7,7 +7,7 @@ import { getNotes } from "../../../../lib/api";
 import type { NotesResponse } from "../../../../types/note";
 
 import NoteList from "../../../../components/NoteList/NoteList";
-import Loader from "..../../..//components/Loader/Loader";
+import Loader from "../../../../components/Loader/Loader";
 import ErrorMessage from "../../../../components/ErrorMessage/ErrorMessage";
 import Pagination from "../../../../components/Pagination/Pagination";
 import SearchBox from "../../../../components/SearchBox/SearchBox";
@@ -17,20 +17,12 @@ import Modal from "../../../../components/Modal/Modal";
 import css from "./Notes.client.module.css";
 
 interface NotesClientProps {
-  initialNotes: NotesResponse;
   initialTag: string;
-  initialPage?: number;
-  initialSearch?: string;
 }
 
-export default function NotesClient({
-  initialNotes,
-  initialTag,
-  initialPage = 1,
-  initialSearch = "",
-}: NotesClientProps) {
-  const [page, setPage] = useState(initialPage);
-  const [search, setSearch] = useState(initialSearch);
+export default function NotesClient({ initialTag }: NotesClientProps) {
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const tag = useMemo(
@@ -52,17 +44,15 @@ export default function NotesClient({
         ...(debouncedSearch ? { search: debouncedSearch } : {}),
         ...(tag ? { tag } : {}),
       }),
-
-    initialData: initialNotes,
-
     placeholderData: (prev) => prev,
+    refetchOnMount: false,
   });
 
   const handleSearch = (query: string) => setSearch(query);
 
   return (
     <div className={css.container}>
-      <SearchBox onSearch={handleSearch} initialValue={initialSearch} />
+      <SearchBox onSearch={handleSearch} />
 
       <button onClick={() => setIsOpen(true)} className={css.button}>
         Create note+
